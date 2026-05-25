@@ -5,7 +5,7 @@ description = ""
 authors = [
     {name = "Cho Hyunjun",email = "chohyunjun1111@gmail.com"}
 ]
-requires-python = "^3.12"
+requires-python = ">=3.12"
 dependencies = [
     "fastapi (>=0.136.3,<0.137.0)",
     "uvicorn[standard] (>=0.48.0,<0.49.0)",
@@ -16,10 +16,39 @@ dependencies = [
     "python-jose[cryptography] (>=3.5.0,<4.0.0)",
     "passlib[bcrypt] (>=1.7.4,<2.0.0)",
     "python-multipart (>=0.0.29,<0.0.30)",
-    "pydantic[email] (>=2.13.4,<3.0.0)"
+    "pydantic[email] (>=2.13.4,<3.0.0)",
+    "greenlet (>=3.5.1,<4.0.0)"
 ]
 
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+    "ruff (>=0.15.14,<0.16.0)",
+    "pre-commit (>=4.6.0,<5.0.0)",
+    "pytest (>=9.0.3,<10.0.0)",
+    "pytest-asyncio (>=1.3.0,<2.0.0)",
+    "httpx (>=0.28.1,<0.29.0)"
+]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["app"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+markers = [
+    "api: API 계약 테스트",
+    "security: 보안 테스트 (인증, 권한)",
+    "financial: 금융 계산 정확성 테스트",
+    "legal: 법률/규제 준수 테스트",
+]

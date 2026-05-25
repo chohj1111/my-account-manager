@@ -4,11 +4,8 @@ from decimal import Decimal
 
 from pydantic import BaseModel, EmailStr, Field
 
-from app.models.account import AccountType
-from app.models.holding import AssetClass
-
-
 # ─── Auth ───────────────────────────────────────────────
+
 
 class UserCreate(BaseModel):
     email: EmailStr
@@ -34,6 +31,7 @@ class TokenRefresh(BaseModel):
 
 
 # ─── Goal ───────────────────────────────────────────────
+
 
 class GoalCreate(BaseModel):
     target_price: int = Field(gt=0, description="목표 주택 가격 (원)")

@@ -27,4 +27,7 @@ class Account(TimestampMixin, Base):
     goal: Mapped["Goal"] = relationship(back_populates="accounts")  # noqa: F821
     holdings: Mapped[list["Holding"]] = relationship(back_populates="account", cascade="all, delete-orphan")  # noqa: F821
     account_limits: Mapped[list["AccountLimit"]] = relationship(back_populates="account", cascade="all, delete-orphan")  # noqa: F821
-    annual_deposits: Mapped[list["AnnualDeposit"]] = relationship(back_populates="account", cascade="all, delete-orphan")  # noqa: F821
+    annual_deposits: Mapped[list["AnnualDeposit"]] = relationship(  # noqa: F821
+        back_populates="account",
+        cascade="all, delete-orphan",
+    )

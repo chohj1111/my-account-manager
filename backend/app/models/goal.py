@@ -2,7 +2,7 @@ import uuid
 from datetime import date
 from decimal import Decimal
 
-from sqlalchemy import BigInteger, Date, ForeignKey, Numeric, String
+from sqlalchemy import BigInteger, Date, ForeignKey, Numeric
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.models.base import Base, TimestampMixin, generate_uuid
@@ -23,5 +23,11 @@ class Goal(TimestampMixin, Base):
 
     user: Mapped["User"] = relationship(back_populates="goals")  # noqa: F821
     accounts: Mapped[list["Account"]] = relationship(back_populates="goal", cascade="all, delete-orphan")  # noqa: F821
-    target_allocations: Mapped[list["TargetAllocation"]] = relationship(back_populates="goal", cascade="all, delete-orphan")  # noqa: F821
-    rebalancing_history: Mapped[list["RebalancingHistory"]] = relationship(back_populates="goal", cascade="all, delete-orphan")  # noqa: F821
+    target_allocations: Mapped[list["TargetAllocation"]] = relationship(  # noqa: F821
+        back_populates="goal",
+        cascade="all, delete-orphan",
+    )
+    rebalancing_history: Mapped[list["RebalancingHistory"]] = relationship(  # noqa: F821
+        back_populates="goal",
+        cascade="all, delete-orphan",
+    )
