@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import settings
-from app.routers import auth, goals
+from app.routers import accounts, auth, goals, holdings
 
 app = FastAPI(
     title="My Account Manager",
@@ -20,6 +20,8 @@ app.add_middleware(
 
 app.include_router(auth.router, prefix="/api/v1/auth", tags=["auth"])
 app.include_router(goals.router, prefix="/api/v1/goals", tags=["goals"])
+app.include_router(accounts.router, prefix="/api/v1/accounts", tags=["accounts"])
+app.include_router(holdings.router, prefix="/api/v1/accounts", tags=["holdings"])
 
 
 @app.get("/health")

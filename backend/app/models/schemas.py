@@ -75,3 +75,61 @@ class GoalSummary(BaseModel):
     gap: int
     monthly_investment_needed: int
     achievability: str
+
+
+# ─── Account ─────────────────────────────────────────────
+
+
+class AccountCreate(BaseModel):
+    goal_id: uuid.UUID
+    account_type: str  # ISA | PENSION | GENERAL
+    account_name: str = Field(min_length=1, max_length=100)
+    is_emergency_fund: bool = False
+    isa_opened_at: date | None = None
+
+
+class AccountUpdate(BaseModel):
+    account_name: str | None = Field(default=None, min_length=1, max_length=100)
+    is_emergency_fund: bool | None = None
+    isa_opened_at: date | None = None
+
+
+class AccountResponse(BaseModel):
+    id: uuid.UUID
+    goal_id: uuid.UUID
+    account_type: str
+    account_name: str
+    is_emergency_fund: bool
+    isa_opened_at: date | None
+    created_at: datetime
+    updated_at: datetime
+
+    model_config = {"from_attributes": True}
+
+
+# ─── Holding ─────────────────────────────────────────────
+
+
+class HoldingCreate(BaseModel):
+    ticker_name: str = Field(min_length=1, max_length=100)
+    asset_class: str  # STOCK | BOND | CASH
+    quantity: Decimal = Field(gt=0)
+    current_price: int = Field(gt=0)
+
+
+class HoldingUpdate(BaseModel):
+    quantity: Decimal | None = Field(default=None, gt=0)
+    current_price: int | None = Field(default=None, gt=0)
+
+
+class HoldingResponse(BaseModel):
+    id: uuid.UUID
+    account_id: uuid.UUID
+    ticker_name: str
+    asset_class: str
+    quantity: Decimal
+    current_price: int
+    created_at: datetime
+    updated_at: datetime
+
+    model_config = {"from_attributes": True}
