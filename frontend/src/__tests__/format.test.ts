@@ -1,10 +1,5 @@
 import { describe, it, expect } from "vitest";
-import {
-  formatKRW,
-  formatKRWShort,
-  formatPercent,
-  formatDDay,
-} from "../utils/format";
+import { formatKRW, formatKRWShort, formatPercent, formatDDay } from "../utils/format";
 
 describe("formatKRW", () => {
   it("천 단위 쉼표 + 원 표시", () => {
