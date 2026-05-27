@@ -28,8 +28,8 @@ export default function NewGoalForm({ onClose, onCreated }: Props) {
       onCreated();
     } catch (err: unknown) {
       const msg =
-        (err as { response?: { data?: { detail?: string } } })?.response?.data
-          ?.detail ?? "오류가 발생했습니다";
+        (err as { response?: { data?: { detail?: string } } })?.response?.data?.detail ??
+        "오류가 발생했습니다";
       setError(msg);
     } finally {
       setLoading(false);

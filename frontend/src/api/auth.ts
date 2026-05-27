@@ -6,10 +6,7 @@ export interface TokenPair {
   token_type: string;
 }
 
-export async function login(
-  email: string,
-  password: string,
-): Promise<TokenPair> {
+export async function login(email: string, password: string): Promise<TokenPair> {
   const res = await api.post<TokenPair>("/auth/login", { email, password });
   return res.data;
 }

@@ -12,14 +12,8 @@ interface Props {
 }
 
 export default function GoalSummaryCard({ summary }: Props) {
-  const {
-    goal,
-    d_day_months,
-    target_equity,
-    gap,
-    monthly_investment_needed,
-    achievability,
-  } = summary;
+  const { goal, d_day_months, target_equity, gap, monthly_investment_needed, achievability } =
+    summary;
   const badge = ACHIEVABILITY_LABEL[achievability];
 
   return (
@@ -42,9 +36,7 @@ export default function GoalSummaryCard({ summary }: Props) {
         </div>
         <div className="stat">
           <span className="label">현재 자산</span>
-          <span className="value">
-            {formatKRWShort(goal.current_total_asset)}
-          </span>
+          <span className="value">{formatKRWShort(goal.current_total_asset)}</span>
         </div>
         <div className="stat highlight">
           <span className="label">부족액</span>
@@ -52,15 +44,11 @@ export default function GoalSummaryCard({ summary }: Props) {
         </div>
         <div className="stat">
           <span className="label">월 필요 투자액</span>
-          <span className="value">
-            {formatKRWShort(monthly_investment_needed)}
-          </span>
+          <span className="value">{formatKRWShort(monthly_investment_needed)}</span>
         </div>
         <div className="stat">
           <span className="label">기대수익률</span>
-          <span className="value">
-            {formatPercent(goal.expected_return_rate / 100)}
-          </span>
+          <span className="value">{formatPercent(goal.expected_return_rate / 100)}</span>
         </div>
       </div>
     </div>
